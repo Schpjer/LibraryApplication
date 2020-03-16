@@ -104,6 +104,7 @@ namespace LibraryApplication.Infastructure.Migrations
                     b.HasBaseType("LibraryApplication.Domain.LibraryItem");
 
                     b.Property<int>("RunTimeMinutes")
+                        .HasColumnName("RunTimeMinutes")
                         .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("AudioBook");
@@ -115,9 +116,11 @@ namespace LibraryApplication.Infastructure.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired()
+                        .HasColumnName("Author")
                         .HasColumnType("text");
 
                     b.Property<int>("Pages")
+                        .HasColumnName("Pages")
                         .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("Book");
@@ -128,7 +131,7 @@ namespace LibraryApplication.Infastructure.Migrations
                     b.HasBaseType("LibraryApplication.Domain.LibraryItem");
 
                     b.Property<int>("RunTimeMinutes")
-                        .HasColumnName("Dvd_RunTimeMinutes")
+                        .HasColumnName("RunTimeMinutes")
                         .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("Dvd");
@@ -140,11 +143,11 @@ namespace LibraryApplication.Infastructure.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnName("ReferenceBook_Author")
+                        .HasColumnName("Author")
                         .HasColumnType("text");
 
                     b.Property<int>("Pages")
-                        .HasColumnName("ReferenceBook_Pages")
+                        .HasColumnName("Pages")
                         .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("ReferenceBook");

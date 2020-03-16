@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LibraryApplication.Infastructure.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20200314115249_LibraryMigration")]
+    [Migration("20200316195527_LibraryMigration")]
     partial class LibraryMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,6 +106,7 @@ namespace LibraryApplication.Infastructure.Migrations
                     b.HasBaseType("LibraryApplication.Domain.LibraryItem");
 
                     b.Property<int>("RunTimeMinutes")
+                        .HasColumnName("RunTimeMinutes")
                         .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("AudioBook");
@@ -117,9 +118,11 @@ namespace LibraryApplication.Infastructure.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired()
+                        .HasColumnName("Author")
                         .HasColumnType("text");
 
                     b.Property<int>("Pages")
+                        .HasColumnName("Pages")
                         .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("Book");

@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200314114420_LibraryMigration.cs" />
     <Compile Remove="Migrations\20200314114420_LibraryMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200314115249_LibraryMigration.cs" />
+    <Compile Remove="Migrations\20200314115249_LibraryMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200316195253_LibraryMigration.cs" />
+    <Compile Remove="Migrations\20200316195253_LibraryMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200316195357_LibraryMigration.cs" />
+    <Compile Remove="Migrations\20200316195357_LibraryMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,6 +26,24 @@ namespace LibraryApplication.Infastructure
         {
            
             modelBuilder.Entity<LibraryItem>().HasDiscriminator<string>("Type");
+            modelBuilder.Entity<ReferenceBook>()
+                .Property(p => p.Author)
+                .HasColumnName("Author");
+            modelBuilder.Entity<ReferenceBook>()
+                .Property(p => p.Pages)
+                .HasColumnName("Pages");
+            modelBuilder.Entity<Book>()
+                .Property(p => p.Author)
+                .HasColumnName("Author");
+            modelBuilder.Entity<Book>()
+                .Property(p => p.Pages)
+                .HasColumnName("Pages");
+            modelBuilder.Entity<Dvd>()
+                .Property(p => p.RunTimeMinutes)
+                .HasColumnName("RunTimeMinutes");
+            modelBuilder.Entity<AudioBook>()
+                .Property(p => p.RunTimeMinutes)
+                .HasColumnName("RunTimeMinutes");
         }
     }
 }

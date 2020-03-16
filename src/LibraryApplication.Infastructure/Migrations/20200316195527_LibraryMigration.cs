@@ -53,8 +53,7 @@ namespace LibraryApplication.Infastructure.Migrations
                     Type = table.Column<string>(nullable: false),
                     RunTimeMinutes = table.Column<int>(nullable: true),
                     Author = table.Column<string>(nullable: true),
-                    Pages = table.Column<int>(nullable: true),
-                    
+                    Pages = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
