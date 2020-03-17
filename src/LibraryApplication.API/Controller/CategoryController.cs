@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LibraryApplication.API.Infastructure.Commands;
+using LibraryApplication.Domain.AggregateModel.LibrayAggregate;
+using LibraryApplication.Infastructure;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace LibraryApplication.API.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/category")]
     public class CategoryController : ControllerBase
     {
-        // GET: api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private ILogger<LibraryContext> _logger;
+        private IMediator _mediator;
 
+        public CategoryController(IMediator mediator, ILogger<LibraryContext> logger)
+        {
+            _logger = logger ?? throw new AggregateException(nameof(logger));
+            _mediator = mediator ?? throw new AggregateException(nameof(mediator));
+        }
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -27,14 +33,20 @@ namespace LibraryApplication.API.Controller
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> CreateCategory([FromBody]Category category)
         {
+            var command = new CreateCategoryCommand(category);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, [FromBody]Category category)
         {
+            var command = new EditCategoryCommand(category);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         // DELETE api/<controller>/5

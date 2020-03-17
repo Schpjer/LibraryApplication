@@ -25,7 +25,7 @@ namespace LibraryApplication.API
 
                 var host = CreateHostBuilder(args).Build();
 
-                if (true)
+                if (seed)
                 {
 
                     var config = host.Services.GetRequiredService<IConfiguration>();

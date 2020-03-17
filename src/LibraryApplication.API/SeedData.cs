@@ -64,24 +64,7 @@ namespace LibraryApplication.API
                         var referenceBooks = scope.ServiceProvider.GetServices<ReferenceBook>();
                        
                     }
-                    if (true)
-                    {
-                        var categoryListItems2 = await context.Categories.ToListAsync();
-                        int listCount2 = categoryListItems2.Count();
-                        var authors2 = new[] { "Ernst Hemingway", "Mark Twain", "J.K Rowling", "Charles Dickens" };
-                        var titles2 = new[] { "title1", "title2", "title3", "title4" };
-                        var seedBooks2 = new Faker<ReferenceBook>()
-                            .StrictMode(false)
-                            .RuleFor(f => f.Author, p => p.PickRandom(authors2))
-                            .RuleFor(f => f.Title, p => p.PickRandom(titles2))
-                            .RuleFor(f => f.Category, p => p.PickRandom(categoryListItems2))
-                            .RuleFor(f => f.Pages, p => p.PickRandom(1, 1000));
-
-                        var referenceBookData = seedBooks2.Generate(100);
-                        context.AddRange(referenceBookData);
-                        context.SaveChanges();
-
-                    }
+                 
 
                 }
             }

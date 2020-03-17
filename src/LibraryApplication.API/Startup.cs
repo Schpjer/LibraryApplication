@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arch.EntityFrameworkCore.UnitOfWork;
 using LibraryApplication.Infastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MediatR;
 
 namespace LibraryApplication.API
 {
@@ -30,9 +32,9 @@ namespace LibraryApplication.API
             services.AddDbContext<LibraryContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString(nameof(LibraryContext)));
-
-
-            });
+            })
+            .AddUnitOfWork<LibraryContext>();
+            services.AddMediatR(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,11 +45,15 @@ namespace LibraryApplication.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-              
+                endpoints.MapControllers();
             });
         }
     }
