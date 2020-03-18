@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LibraryApplication.Infastructure.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20200316195527_LibraryMigration")]
+    [Migration("20200318090239_LibraryMigration")]
     partial class LibraryMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,9 +79,6 @@ namespace LibraryApplication.Infastructure.Migrations
                     b.Property<string>("Borrower")
                         .HasColumnType("text");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("IsBorrowable")
                         .HasColumnType("boolean");
 
@@ -92,9 +89,13 @@ namespace LibraryApplication.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("categoryId")
+                        .HasColumnName("CategoryId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("categoryId");
 
                     b.ToTable("LibraryItems");
 
@@ -159,7 +160,9 @@ namespace LibraryApplication.Infastructure.Migrations
                 {
                     b.HasOne("LibraryApplication.Domain.AggregateModel.LibrayAggregate.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("categoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

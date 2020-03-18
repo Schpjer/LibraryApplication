@@ -7,9 +7,9 @@ namespace LibraryApplication.Domain.AggregateModel.LibrayAggregate
 {
     public class ReferenceBook : LibraryItem
     {
-        [Required]
+        [Required(ErrorMessage = "Author is Required")]
         public string Author { set; get; }
-        [Required]
+        [Required(ErrorMessage = "Pages is Required")]
         public int Pages { set; get; }
         public ReferenceBook()
         {

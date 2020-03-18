@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Bogus" Version="29.0.1" />
     <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
@@ -24,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infastructure\Commands\Reference Book\" />
     <Folder Include="Infastructure\Queries\" />
   </ItemGroup>
 

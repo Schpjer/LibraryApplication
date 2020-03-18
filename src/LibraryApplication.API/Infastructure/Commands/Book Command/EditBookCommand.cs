@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LibraryApplication.API.Infastructure.Commands
+namespace LibraryApplication.API.Infastructure.Commands.Book_Command
 {
-    public class EditCategoryCommand: IRequest<CategoryDTO>
+    public class EditBookCommand : IRequest<BookDTO>
     {
-        public Category Category { set; get; }
+        public Book Book { set; get; }
 
-        public EditCategoryCommand(Category category)
+        public EditBookCommand(Book book)
         {
-            Category = category;
+            Book = book;
         }
     }
 }

@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20200316195253_LibraryMigration.Designer.cs" />
     <Compile Remove="Migrations\20200316195357_LibraryMigration.cs" />
     <Compile Remove="Migrations\20200316195357_LibraryMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200316195527_LibraryMigration.cs" />
+    <Compile Remove="Migrations\20200316195527_LibraryMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LibraryApplication.API.Infastructure.Commands
+namespace LibraryApplication.API.Infastructure.Commands.Dvd_Command
 {
-    public class EditCategoryCommand: IRequest<CategoryDTO>
+    public class CreateDvdCommand : IRequest<DvdDTO>
     {
-        public Category Category { set; get; }
+        public Dvd Dvd { set; get; }
 
-        public EditCategoryCommand(Category category)
+        public CreateDvdCommand(Dvd dvd)
         {
-            Category = category;
+            Dvd = dvd;
         }
     }
 }

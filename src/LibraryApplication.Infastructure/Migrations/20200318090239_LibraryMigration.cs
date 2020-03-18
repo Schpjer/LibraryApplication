@@ -46,10 +46,10 @@ namespace LibraryApplication.Infastructure.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CategoryId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
                     IsBorrowable = table.Column<bool>(nullable: false),
                     Borrower = table.Column<string>(nullable: true),
-                    BorrowDate = table.Column<DateTime>(nullable: true),
+                    BorrowDate = table.Column<DateTime>(nullable: false),
                     Type = table.Column<string>(nullable: false),
                     RunTimeMinutes = table.Column<int>(nullable: true),
                     Author = table.Column<string>(nullable: true),
@@ -63,7 +63,7 @@ namespace LibraryApplication.Infastructure.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

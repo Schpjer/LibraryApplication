@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MediatR;
+using BookRegister.API.Infastructure.Middleware;
+using AutoMapper;
 
 namespace LibraryApplication.API
 {
@@ -35,6 +37,7 @@ namespace LibraryApplication.API
             })
             .AddUnitOfWork<LibraryContext>();
             services.AddMediatR(typeof(Startup));
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +47,8 @@ namespace LibraryApplication.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseHttpsRedirection();
 

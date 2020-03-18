@@ -38,7 +38,7 @@ namespace LibraryApplication.API
                             .StrictMode(false)
                             .RuleFor(f => f.CategoryName, p => p.PickRandom(categoryList));
 
-                        var categoryData = seedCategory.Generate(100);
+                        var categoryData = seedCategory.Generate(1000);
                         context.AddRange(categoryData);
                         context.SaveChanges();
 
@@ -57,7 +57,7 @@ namespace LibraryApplication.API
                             .RuleFor(f => f.Category, p => p.PickRandom(categoryListItems))
                             .RuleFor(f => f.Pages, p => p.PickRandom(1, 1000));
 
-                        var bookData = seedBooks.Generate(100);
+                        var bookData = seedBooks.Generate(1000);
                         context.AddRange(bookData);
                         context.SaveChanges();
 

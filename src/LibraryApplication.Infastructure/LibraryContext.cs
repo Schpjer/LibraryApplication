@@ -26,6 +26,9 @@ namespace LibraryApplication.Infastructure
         {
            
             modelBuilder.Entity<LibraryItem>().HasDiscriminator<string>("Type");
+            modelBuilder.Entity<LibraryItem>()
+                .Property(p => p.categoryId)
+                .HasColumnName("CategoryId");
             modelBuilder.Entity<ReferenceBook>()
                 .Property(p => p.Author)
                 .HasColumnName("Author");

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LibraryApplication.API.Infastructure.Commands;
+using LibraryApplication.API.Infastructure.Commands.Category_Command;
 using LibraryApplication.Domain.AggregateModel.LibrayAggregate;
 using LibraryApplication.Infastructure;
 using MediatR;
@@ -31,7 +32,7 @@ namespace LibraryApplication.API.Controller
             return "value";
         }
 
-        // POST api/<controller>
+        // POST api/category
         [HttpPost]
         public async Task<IActionResult> CreateCategory([FromBody]Category category)
         {
@@ -40,19 +41,23 @@ namespace LibraryApplication.API.Controller
             return Ok(result);
         }
 
-        // PUT api/<controller>/5
+        // PUT api/category
         [HttpPut]
-        public async Task<IActionResult> Put(int id, [FromBody]Category category)
+        public async Task<IActionResult> PutCategory([FromBody]Category category)
         {
             var command = new EditCategoryCommand(category);
             var result = await _mediator.Send(command);
             return Ok(result);
         }
 
-        // DELETE api/<controller>/5
+        // DELETE api/category/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
+            var command = new DeleteCategoryCommand(id);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
+       
     }
 }
