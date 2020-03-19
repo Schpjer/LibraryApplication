@@ -29,7 +29,6 @@ namespace LibraryApplication.API.Infastructure.Handlers
         {
             var book = request.Book;
             var category = _unitOfWork.GetRepository<Category>().Find(book.categoryId);
-            book.Category = category;
             _unitOfWork.GetRepository<Book>().Insert(book);
             _unitOfWork.SaveChanges();
             // Returns the book that was created in JSON format, if not created Exception will be thrown and middleware will handle it.
@@ -39,7 +38,6 @@ namespace LibraryApplication.API.Infastructure.Handlers
         {
             var book = _unitOfWork.GetRepository<Book>().Find(request.Id);
             var category = _unitOfWork.GetRepository<Category>().Find(book.categoryId);
-            book.Category = category;
             _unitOfWork.GetRepository<Book>().Delete(book);
             _unitOfWork.SaveChanges();
             return _mapper.Map<BookDTO>(book);

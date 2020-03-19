@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibraryApplication.Domain
 {
-    public abstract class LibraryItem : Entity
+    public class LibraryItem : Entity
     {
         public Category Category { set; get; }
         public int categoryId {set; get;}

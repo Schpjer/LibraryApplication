@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApplication.Domain", "src\LibraryApplication.Domain\LibraryApplication.Domain.csproj", "{C3E6DBB2-FC5A-4D7C-AED2-ACE82F244415}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApplication.Domain", "src\LibraryApplication.Domain\LibraryApplication.Domain.csproj", "{C3E6DBB2-FC5A-4D7C-AED2-ACE82F244415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApplication.Infastructure", "src\LibraryApplication.Infastructure\LibraryApplication.Infastructure.csproj", "{1FFB8A3E-65D4-421E-9190-F09963D9F25C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApplication.Infastructure", "src\LibraryApplication.Infastructure\LibraryApplication.Infastructure.csproj", "{1FFB8A3E-65D4-421E-9190-F09963D9F25C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApplication.API", "src\LibraryApplication.API\LibraryApplication.API.csproj", "{9DAA8075-739B-498D-81B8-CAFB4C45DC4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApplication.API", "src\LibraryApplication.API\LibraryApplication.API.csproj", "{9DAA8075-739B-498D-81B8-CAFB4C45DC4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B060DBDB-8998-437E-B4C7-E15B626E1E6E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

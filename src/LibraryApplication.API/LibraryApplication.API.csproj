@@ -25,9 +25,4 @@
     <ProjectReference Include="..\LibraryApplication.Infastructure\LibraryApplication.Infastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infastructure\Commands\Reference Book\" />
-    <Folder Include="Infastructure\Queries\" />
-  </ItemGroup>
-
 </Project>

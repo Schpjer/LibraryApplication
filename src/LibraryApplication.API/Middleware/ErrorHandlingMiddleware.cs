@@ -20,7 +20,7 @@ namespace BookRegister.API.Infastructure.Middleware
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        public async Task Invoke(HttpContext context)
         {
             try
             {
@@ -33,6 +33,7 @@ namespace BookRegister.API.Infastructure.Middleware
         }
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
+            //Simple error handling middleware that will handle exceptions in the code and respond with a HttpStatusCode
             var code = HttpStatusCode.InternalServerError; // 500 if unexpected
             if (ex is ArgumentNullException) code = HttpStatusCode.NotFound;
             else if (ex is DbUpdateException) code = HttpStatusCode.Conflict;

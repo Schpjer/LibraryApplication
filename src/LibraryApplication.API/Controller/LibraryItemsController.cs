@@ -4,7 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryApplication.API.Infastructure.Commands.Audio_Book_Command;
 using LibraryApplication.API.Infastructure.Commands.Book_Command;
+using LibraryApplication.API.Infastructure.Commands.Borrow_Item_Command;
 using LibraryApplication.API.Infastructure.Commands.Dvd_Command;
+using LibraryApplication.API.Infastructure.Commands.Reference_Book;
+using LibraryApplication.API.Infastructure.Queries.Library_Items_Queries;
+using LibraryApplication.Domain;
 using LibraryApplication.Domain.AggregateModel.LibrayAggregate;
 using LibraryApplication.Infastructure;
 using MediatR;
@@ -25,6 +29,14 @@ namespace LibraryApplication.API.Controller
         {
             _logger = logger ?? throw new AggregateException(nameof(logger));
             _mediator = mediator ?? throw new AggregateException(nameof(mediator));
+        }
+
+        [HttpGet("category")]
+        public async Task<IActionResult> GetAllLibraryItemsSortedByCategory()
+        {
+            var command = new GetLibraryItemsSortedByCategoryQuery();
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
         // POST api/libraryItem
         [HttpPost("book")]
@@ -149,5 +161,60 @@ namespace LibraryApplication.API.Controller
                 return BadRequest(ModelState);
             }
         }
+        [HttpPost("referencebook")]
+        public async Task<IActionResult> CreateReferenceBook([FromBody]ReferenceBook referenceBook)
+        {
+            if (ModelState.IsValid)
+            {
+                var command = new CreateReferenceBookCommand(referenceBook);
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+        [HttpDelete("referencebook/{id}")]
+        public async Task<IActionResult> DeleteReferenceBook(int id)
+        {
+            var command = new DeleteReferenceBookCommand(id);
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+        [HttpPut("referencebook")]
+        public async Task<IActionResult> UpdateReferenceBook([FromBody]ReferenceBook referenceBook)
+        {
+            if (ModelState.IsValid)
+            {
+                var command = new EditReferenceBookCommand(referenceBook);
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+
+        }
+        [HttpPut("borrowitem")]
+        public async Task<IActionResult> BorrowLibraryItem([FromBody]LibraryItem itemToBorrow)
+        {
+                var command = new BorrowLibraryItemCommand(itemToBorrow);
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+
+        [HttpPut("returnitem/{id}")]
+        public async Task<IActionResult> ReturnLibraryItem(int id)
+        {
+            var command = new ReturnLibraryItemCommand(id);
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
     }
 }
+
+    
+

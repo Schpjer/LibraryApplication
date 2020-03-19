@@ -46,10 +46,10 @@ namespace LibraryApplication.Infastructure.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CategoryId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: false),
                     IsBorrowable = table.Column<bool>(nullable: false),
                     Borrower = table.Column<string>(nullable: true),
-                    BorrowDate = table.Column<DateTime>(nullable: false),
+                    BorrowDate = table.Column<DateTime>(nullable: true),
                     Type = table.Column<string>(nullable: false),
                     RunTimeMinutes = table.Column<int>(nullable: true),
                     Author = table.Column<string>(nullable: true),

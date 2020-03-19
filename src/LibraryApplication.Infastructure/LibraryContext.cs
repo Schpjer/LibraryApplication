@@ -1,4 +1,5 @@
-﻿using LibraryApplication.Domain;
+﻿
+using LibraryApplication.Domain;
 using LibraryApplication.Domain.AggregateModel.EmployeesAggregate;
 using LibraryApplication.Domain.AggregateModel.LibrayAggregate;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ namespace LibraryApplication.Infastructure
 
         }
         public DbSet<LibraryItem> LibraryItems { set; get; }
-        public DbSet<Book> Books { set; get; }
+        public DbSet<Domain.AggregateModel.LibrayAggregate.Book> Books { set; get; }
         public DbSet<AudioBook> AudioBooks { set; get; }
         public DbSet<Dvd> Dvds { set; get; }
         public DbSet<ReferenceBook> ReferenceBooks { set; get; }
@@ -26,7 +27,7 @@ namespace LibraryApplication.Infastructure
         {
            
             modelBuilder.Entity<LibraryItem>().HasDiscriminator<string>("Type");
-            modelBuilder.Entity<LibraryItem>()
+            modelBuilder.Entity<Book>()
                 .Property(p => p.categoryId)
                 .HasColumnName("CategoryId");
             modelBuilder.Entity<ReferenceBook>()

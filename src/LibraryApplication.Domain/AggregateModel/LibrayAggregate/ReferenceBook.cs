@@ -13,7 +13,7 @@ namespace LibraryApplication.Domain.AggregateModel.LibrayAggregate
         public int Pages { set; get; }
         public ReferenceBook()
         {
-            Type = nameof(AudioBook);
+            Type = nameof(ReferenceBook);
             IsBorrowable = false;
         }
     }
