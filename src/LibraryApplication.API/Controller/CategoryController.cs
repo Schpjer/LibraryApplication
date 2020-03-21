@@ -25,13 +25,7 @@ namespace LibraryApplication.API.Controller
             _logger = logger ?? throw new AggregateException(nameof(logger));
             _mediator = mediator ?? throw new AggregateException(nameof(mediator));
         }
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+     
         // POST api/category
         [HttpPost]
         public async Task<IActionResult> CreateCategory([FromBody]Category category)

@@ -38,6 +38,13 @@ namespace LibraryApplication.API.Controller
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+        [HttpGet("type")]
+        public async Task<IActionResult> GetAllLibraryItemsSortedByType()
+        {
+            var command = new GetLibraryItemsSortedByTypeQuery();
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
         // POST api/libraryItem
         [HttpPost("book")]
         public async Task<IActionResult> CreateBook([FromBody]Book book)

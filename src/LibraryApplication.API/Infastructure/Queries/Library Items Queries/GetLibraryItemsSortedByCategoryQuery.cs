@@ -1,4 +1,5 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork.Collections;
+using LibraryApplication.API.DTO;
 using LibraryApplication.Domain;
 using MediatR;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryApplication.API.Infastructure.Queries.Library_Items_Queries
 {
-    public class GetLibraryItemsSortedByCategoryQuery : IRequest<List<LibraryItem>>
+    public class GetLibraryItemsSortedByCategoryQuery : IRequest<List<LibraryItemDTO>>
     {  
    
     }

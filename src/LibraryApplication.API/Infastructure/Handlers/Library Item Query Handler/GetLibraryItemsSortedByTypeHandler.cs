@@ -1,5 +1,4 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
-using Arch.EntityFrameworkCore.UnitOfWork.Collections;
 using AutoMapper;
 using LibraryApplication.API.DTO;
 using LibraryApplication.API.Infastructure.Queries.Library_Items_Queries;
@@ -14,22 +13,22 @@ using System.Threading.Tasks;
 
 namespace LibraryApplication.API.Infastructure.Handlers.Library_Item_Query_Handler
 {
-    public class GetLibraryItemsSortedByCategoryHandler : IRequestHandler<GetLibraryItemsSortedByCategoryQuery, List<LibraryItemDTO>>
+    public class GetLibraryItemsSortedByTypeHandler : IRequestHandler<GetLibraryItemsSortedByTypeQuery, List<LibraryItemDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetLibraryItemsSortedByCategoryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetLibraryItemsSortedByTypeHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<List<LibraryItemDTO>> Handle(GetLibraryItemsSortedByCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<List<LibraryItemDTO>> Handle(GetLibraryItemsSortedByTypeQuery request, CancellationToken cancellationToken)
         {
-            List<LibraryItem> list = _unitOfWork.GetRepository<LibraryItem>().GetAll().OrderBy(t => t.Category.CategoryName).ToList();
+            List<LibraryItem> list = _unitOfWork.GetRepository<LibraryItem>().GetAll().OrderBy(t => t.Type).ToList();
             List<LibraryItemDTO> listDTO = new List<LibraryItemDTO>();
-            foreach (LibraryItem item in list)
+            foreach(LibraryItem item in list)
             {
                 var category = _unitOfWork.GetRepository<Category>().Find(item.categoryId);
                 item.Category = category;

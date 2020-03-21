@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LibraryApplication.API.DTO;
 using LibraryApplication.Domain;
+using LibraryApplication.Domain.AggregateModel.EmployeesAggregate;
 using LibraryApplication.Domain.AggregateModel.LibrayAggregate;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,10 @@ namespace LibraryApplication.API.Mapping
                 .ConstructUsing(src => new AudioBookDTO(src.Title, src.RunTimeMinutes, src.Category.CategoryName));
             CreateMap<LibraryItem, BorrowInformationDTO>()
                 .ConstructUsing(src => new BorrowInformationDTO(src.Title, src.BorrowDate, src.Borrower));
+            CreateMap<LibraryItem, LibraryItemDTO>()
+                .ConstructUsing(src => new LibraryItemDTO(src.Id, src.Title, src.Category.CategoryName , src.Type));
+            CreateMap<Employee, EmployeeDTO>()
+                .ConstructUsing(src => new EmployeeDTO(src.FirstName, src.LastName, src.Salary));
 
 
         }

@@ -2,45 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LibraryApplication.API.Infastructure.Commands.Employee_Command;
+using LibraryApplication.Domain.AggregateModel.EmployeesAggregate;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace LibraryApplication.API.Controller
 {
     [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-        // GET: api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private IMediator _mediator;
+
+        public EmployeeController(IMediator mediator)
         {
-            return new string[] { "value1", "value2" };
+            _mediator = mediator ?? throw new AggregateException(nameof(mediator));
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> CreateBook([FromBody]Employee employee)
         {
-        }
+            if (ModelState.IsValid)
+            {
+                var command = new CreateEmployeeCommand(employee);
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
         }
-
-        // DELETE api/<controller>/5
+        // DELETE api/Employee/5
+        // DELETE employee with Id
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeleteEmployee(int id)
         {
+            var command = new DeleteEmployeeCommand(id);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
     }
 }
