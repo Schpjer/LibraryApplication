@@ -26,6 +26,7 @@ namespace LibraryApplication.API
             Configuration = configuration;
 
         }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -38,6 +39,7 @@ namespace LibraryApplication.API
             .AddUnitOfWork<LibraryContext>();
             services.AddMediatR(typeof(Startup));
             services.AddAutoMapper(typeof(Startup));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,19 +49,19 @@ namespace LibraryApplication.API
             {
                 app.UseDeveloperExceptionPage();
             }
+          
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseRouting();        
+            
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

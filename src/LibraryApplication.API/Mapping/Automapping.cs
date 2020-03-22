@@ -29,7 +29,7 @@ namespace LibraryApplication.API.Mapping
             CreateMap<LibraryItem, LibraryItemDTO>()
                 .ConstructUsing(src => new LibraryItemDTO(src.Id, src.Title, src.Category.CategoryName , src.Type));
             CreateMap<Employee, EmployeeDTO>()
-                .ConstructUsing(src => new EmployeeDTO(src.FirstName, src.LastName, src.Salary));
+                .ConstructUsing(src => new EmployeeDTO(src.FirstName, src.LastName, src.Salary, src.Id));
 
 
         }

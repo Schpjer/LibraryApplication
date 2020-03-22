@@ -2,6 +2,7 @@
 using AutoMapper;
 using LibraryApplication.API.DTO;
 using LibraryApplication.API.Infastructure.Commands.Employee_Command;
+using LibraryApplication.API.Infastructure.Queries.Employee_Queries;
 using LibraryApplication.Domain.AggregateModel.EmployeesAggregate;
 using MediatR;
 using System;
@@ -14,7 +15,8 @@ namespace LibraryApplication.API.Infastructure.Handlers.Employee_Command_Handler
 {
     public class EmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, EmployeeDTO>,
         IRequestHandler<DeleteEmployeeCommand, EmployeeDTO>,
-        IRequestHandler<EditEmployeeCommand, EmployeeDTO>
+        IRequestHandler<EditEmployeeCommand, EmployeeDTO>,
+        IRequestHandler<GetEmployeesQuery, List<EmployeeDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -112,6 +114,12 @@ namespace LibraryApplication.API.Infastructure.Handlers.Employee_Command_Handler
             return _mapper.Map<EmployeeDTO>(exsistingEmployee);
                 
             
+        }
+
+        public async Task<List<EmployeeDTO>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
+        {
+            var employeeList = _unitOfWork.GetRepository<Employee>().GetAll().ToList();
+            return _mapper.Map<List<EmployeeDTO>>(employeeList);
         }
     }
 }
