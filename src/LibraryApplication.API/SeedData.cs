@@ -12,6 +12,7 @@ namespace LibraryApplication.API
 {
     public class SeedData
     {
+        //Method that seeds the database with 1000 rows. You can run this by starting api project with "dotnet run /seed"
         public async static void EnsureSeedData(string connectionString)
         {
             var services = new ServiceCollection();
@@ -61,7 +62,6 @@ namespace LibraryApplication.API
                         context.AddRange(bookData);
                         context.SaveChanges();
 
-                        var referenceBooks = scope.ServiceProvider.GetServices<ReferenceBook>();
                        
                     }
                  

@@ -22,7 +22,7 @@ namespace LibraryApplication.Infastructure
         public DbSet<Category> Categories { set; get; }
         public DbSet<Employee> Employees { set; get; }
 
-
+        // set rules for database when autogeneration through entity framework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            
