@@ -12,6 +12,7 @@ namespace LibraryApplication.API.Mapping
 {
     public class AutoMapping : Profile
     {
+        // Creates mapping for Data Transfer Objects
         public AutoMapping()
         {
             // this maps so we can convert our different models to the DTOS and information we want to send back to the user.

@@ -168,6 +168,7 @@ namespace LibraryApplication.API.Controller
                 return BadRequest(ModelState);
             }
         }
+        // Modelstate checks that input validation is correct.
         [HttpPost("referencebook")]
         public async Task<IActionResult> CreateReferenceBook([FromBody]ReferenceBook referenceBook)
         {
@@ -204,6 +205,7 @@ namespace LibraryApplication.API.Controller
             }
 
         }
+        // Borrow item and because it is a library item u can use method on all the different libraryitems
         [HttpPut("borrowitem")]
         public async Task<IActionResult> BorrowLibraryItem([FromBody]LibraryItem itemToBorrow)
         {
@@ -212,6 +214,7 @@ namespace LibraryApplication.API.Controller
                 return Ok(result);
             }
 
+        // Returns the item on specific id
         [HttpPut("returnitem/{id}")]
         public async Task<IActionResult> ReturnLibraryItem(int id)
         {
