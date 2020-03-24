@@ -49,7 +49,7 @@ namespace LibraryApplication.API.Infastructure.Handlers.Employee_Command_Handler
             {
                 var checkIfManagerExist = _unitOfWork.GetRepository<Employee>().GetAll().Where(t => t.Id == employee.ManagerId).First();
                 //Checks that the manager we are trying to set to the manager either is a manager or CEO
-                if (checkIfManagerExist.IsManager || checkIfManagerExist.IsCEO)
+                if (checkIfManagerExist.IsManager || checkIfManagerExist.IsCEO || checkIfManagerExist == null)
                 {
                     employee.SetSalary(employee.SalaryCoefficient);
                     _unitOfWork.GetRepository<Employee>().Insert(employee);

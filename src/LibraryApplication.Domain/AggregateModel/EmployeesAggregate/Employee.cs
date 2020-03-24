@@ -22,7 +22,7 @@ namespace LibraryApplication.Domain.AggregateModel.EmployeesAggregate
         [Required(ErrorMessage = "Salary Coeffiecient is required to calculate salary")]
         public int SalaryCoefficient { set; get; }
        
-
+        // Calculates the salary based on the type of employee that is created.
         public void SetSalary(int salaryCoefficient)
         {
             if (IsCEO)

@@ -15,7 +15,7 @@ namespace LibraryApplication.Infastructure
 
         }
         public DbSet<LibraryItem> LibraryItems { set; get; }
-        public DbSet<Domain.AggregateModel.LibrayAggregate.Book> Books { set; get; }
+        public DbSet<Book> Books { set; get; }
         public DbSet<AudioBook> AudioBooks { set; get; }
         public DbSet<Dvd> Dvds { set; get; }
         public DbSet<ReferenceBook> ReferenceBooks { set; get; }
